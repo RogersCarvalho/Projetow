@@ -18,6 +18,7 @@ public class UserController {
 
            var user = new User(1L,"Teste", "teste@yahoo.com.br","(32)99174-0603","1234");
            return ResponseEntity.ok().body(user);
+
        }
 
 
@@ -26,3 +27,6 @@ public class UserController {
 
 
 }
+
+
+
