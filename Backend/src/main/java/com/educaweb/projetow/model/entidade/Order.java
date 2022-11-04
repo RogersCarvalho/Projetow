@@ -1,5 +1,8 @@
 package com.educaweb.projetow.model.entidade;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.springframework.data.annotation.CreatedDate;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.Instant;
@@ -12,9 +15,12 @@ public class Order implements Serializable {
      @javax.persistence.Id
      @GeneratedValue(strategy = GenerationType.IDENTITY)
      private Long Id;
+
+
      private Instant moment;
 
-     @ManyToOne
+     @JsonIgnore
+     @ManyToOne()
      @JoinColumn(name="id_cliente_user")
      private User cliente_user;
 

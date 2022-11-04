@@ -1,6 +1,8 @@
 package com.educaweb.projetow.model.entidade;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -20,6 +22,8 @@ public class User implements Serializable {
     private String email;
     private String phone;
     private String password;
+
+
 
     @OneToMany(mappedBy = "cliente_user")
     private List<Order> orders = new ArrayList<>();
