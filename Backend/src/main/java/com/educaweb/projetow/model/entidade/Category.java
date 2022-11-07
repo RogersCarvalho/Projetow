@@ -17,11 +17,12 @@ public class Category implements Serializable {
     private Long id;
     private String name;
 
-
+    /*@JsonIgnore= faz exibir apenas a categoria sem o produto que ela esta*/
+    /*e assim faz aparecer os produtos com suas categorias na classe Product*/
     @JsonIgnore
     @ManyToMany(mappedBy = "categories")
-    private Set<Product> products= new HashSet<>(); /*Uma categoria esta em vários produtos*/
-
+    private Set<Product> products= new HashSet<>();
+    /*Uma categoria esta em vários produtos*/
 
 
     public Category() {}
