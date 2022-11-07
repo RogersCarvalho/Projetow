@@ -21,7 +21,7 @@ public class Order implements Serializable {
 
      private Instant moment;
 
-     @JsonIgnore
+     @JsonIgnore /*Faz exibir os pedidos sem informar o cliente ou usr do pedido*/
      @ManyToOne()
      @JoinColumn(name="id_cliente_user")
      private User cliente_user;
