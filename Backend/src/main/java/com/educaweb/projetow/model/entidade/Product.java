@@ -1,5 +1,7 @@
 package com.educaweb.projetow.model.entidade;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
@@ -18,8 +20,13 @@ public class Product implements Serializable {
     private double price;
     private String imgURL;
 
-    @Transient
-    private Set<Category> categories = new HashSet<>();
+
+    @ManyToMany
+    @JoinTable(name="tb_product_category",
+    joinColumns= @JoinColumn(name = "id_product"),
+    inverseJoinColumns= @JoinColumn(name="id_category"))
+    private Set<Category> categories = new HashSet<>(); /*Um produto tem várias categorias*/
+
 
     public Product() {}
     public Product(Long id, String name, String description, double price, String imgURL) {
@@ -30,49 +37,44 @@ public class Product implements Serializable {
         this.imgURL = imgURL;
     }
 
+
     public Long getId() {
         return id;
     }
+    public String getName() {
+        return name;
+    }
+    public String getDescription() {
+        return description;
+    }
+    public double getPrice() {
+        return price;
+    }
+    public String getImgURL() {
+        return imgURL;
+    }
+    public Set<Category> getCategories() {
+        return categories;
+    }
+
 
     public void setId(Long id) {
         this.id = id;
     }
-
-    public String getName() {
-        return name;
-    }
-
     public void setName(String name) {
         this.name = name;
     }
-
-    public String getDescription() {
-        return description;
-    }
-
     public void setDescription(String description) {
         this.description = description;
     }
-
-    public double getPrice() {
-        return price;
-    }
-
     public void setPrice(double price) {
         this.price = price;
     }
-
-    public String getImgURL() {
-        return imgURL;
-    }
-
     public void setImgURL(String imgURL) {
         this.imgURL = imgURL;
     }
 
-    public Set<Category> getCategories() {
-        return categories;
-    }
+
 
     @Override
     public boolean equals(Object o) {

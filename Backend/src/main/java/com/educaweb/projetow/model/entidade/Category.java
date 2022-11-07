@@ -1,5 +1,7 @@
 package com.educaweb.projetow.model.entidade;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
@@ -15,8 +17,10 @@ public class Category implements Serializable {
     private Long id;
     private String name;
 
-    @Transient
-    private Set<Product> products= new HashSet<>();
+
+    @JsonIgnore
+    @ManyToMany(mappedBy = "categories")
+    private Set<Product> products= new HashSet<>(); /*Uma categoria esta em vários produtos*/
 
 
 
