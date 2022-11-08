@@ -24,20 +24,15 @@ public class OrderItemPk implements Serializable  {
     public Order getOrder() {
         return order;
     }
-
     public Product getProduct() {
         return product;
     }
-
-
     public void setOrder(Order order) {
         this.order = order;
     }
-
     public void setProduct(Product product) {
         this.product = product;
     }
-
 
 
     @Override
