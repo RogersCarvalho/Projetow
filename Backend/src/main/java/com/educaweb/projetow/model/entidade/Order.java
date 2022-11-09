@@ -24,6 +24,8 @@ public class Order implements Serializable {
      private Instant moment;
      private Integer orderStatus;
 
+     @OneToOne(mappedBy = "order", cascade = CascadeType.ALL)
+     private Payment payment;
 
      @ManyToOne()
      @JoinColumn(name="id_cliente_user")
@@ -42,14 +44,21 @@ public class Order implements Serializable {
          setOrderStatus(orderStatus);
      }
 
+
      public Long getId() {return id;}
      public Instant getMoment() {return moment;}
      public User getCliente_user() {return cliente_user;}
+     public Payment getPayment() {return payment;}
      public void setId(Long id) {id = id;}
      public void setMoment(Instant moment) {this.moment = moment;}
      public void setCliente_user(User cliente_user) {this.cliente_user = cliente_user;}
 
+     //Pagamento
+     public void setPayment(Payment payment) {
+          this.payment = payment;
+     }
 
+     //Pedido
      public OrderStatus getOrderStatus() {
           return OrderStatus.valueOf(orderStatus);
      }
