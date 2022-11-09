@@ -28,7 +28,6 @@ public class OrdemItem implements Serializable {
 
     @JsonIgnore
     public Order getOrder(){return id.getOrder();}
-
     public Product getProduct(){return id.getProduct();}
 
     public Integer getQuantity() {return quantity;}

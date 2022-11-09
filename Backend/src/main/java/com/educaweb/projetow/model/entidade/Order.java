@@ -24,7 +24,7 @@ public class Order implements Serializable {
      private Instant moment;
      private Integer orderStatus;
 
-     //@JsonIgnore
+
      @ManyToOne()
      @JoinColumn(name="id_cliente_user")
      private User cliente_user;

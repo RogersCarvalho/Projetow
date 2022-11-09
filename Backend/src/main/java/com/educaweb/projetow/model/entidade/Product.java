@@ -20,7 +20,11 @@ public class Product implements Serializable {
     private double price;
     private String imgURL;
 
-    //@JsonIgnore
+    //Código comentado foi feito para o produto
+    //acessar os orders atraves dos OrdemItens
+    //@OneToMany(mappedBy = "id.product")
+    //private Set<OrdemItem> items = new HashSet<>();
+
     @ManyToMany
     @JoinTable(name="tb_product_category",
     joinColumns= @JoinColumn(name = "id_product"),
@@ -38,41 +42,28 @@ public class Product implements Serializable {
     }
 
 
-    public Long getId() {
-        return id;
-    }
-    public String getName() {
-        return name;
-    }
-    public String getDescription() {
-        return description;
-    }
-    public double getPrice() {
-        return price;
-    }
-    public String getImgURL() {
-        return imgURL;
-    }
-    public Set<Category> getCategories() {
-        return categories;
-    }
+    //@JsonIgnore
+    //public Set<Order> getOrders(){
+       // Set<Order> Lista = new HashSet<>();
+       // for (OrdemItem orderItem : items){
+        //    Lista.add(orderItem.getOrder());
+       // }
+       // return Lista;
+   // }
 
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-    public void setName(String name) {
-        this.name = name;
-    }
-    public void setDescription(String description) {
-        this.description = description;
-    }
-    public void setPrice(double price) {
-        this.price = price;
-    }
-    public void setImgURL(String imgURL) {
-        this.imgURL = imgURL;
-    }
+    public Long getId() {return id;}
+    public String getName() {return name;}
+    public String getDescription() {return description;}
+    public double getPrice() {return price;}
+    public String getImgURL() {return imgURL;}
+    public Set<Category> getCategories() {return categories;}
+
+    public void setId(Long id) {this.id = id;}
+    public void setName(String name) {this.name = name;}
+    public void setDescription(String description) {this.description = description;}
+    public void setPrice(double price) {this.price = price;}
+    public void setImgURL(String imgURL) {this.imgURL = imgURL;}
 
 
 
