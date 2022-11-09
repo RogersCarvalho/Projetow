@@ -24,16 +24,30 @@ public class Order implements Serializable {
      private Instant moment;
      private Integer orderStatus;
 
-     @OneToOne(mappedBy = "order", cascade = CascadeType.ALL)
-     private Payment payment;
 
      @ManyToOne()
      @JoinColumn(name="id_cliente_user")
      private User cliente_user;
 
+
+     @OneToOne(mappedBy = "order", cascade = CascadeType.ALL)
+     private Payment payment;
+
+
      //@JsonIgnore
      @OneToMany(mappedBy = "id.order")
      private Set<OrdemItem> items= new HashSet<>();
+
+
+     public Double getTotal(){
+
+          Double sum=0.0;
+          for (OrdemItem obj : items){
+               sum = sum + obj.getSubTotal();
+          }
+          return sum;
+     }
+
 
 
      public Order() {}
@@ -44,8 +58,9 @@ public class Order implements Serializable {
          setOrderStatus(orderStatus);
      }
 
-
-     public Long getId() {return id;}
+     public Long getId() {
+          return id;
+     }
      public Instant getMoment() {return moment;}
      public User getCliente_user() {return cliente_user;}
      public Payment getPayment() {return payment;}
