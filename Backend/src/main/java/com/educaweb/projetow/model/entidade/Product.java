@@ -20,7 +20,7 @@ public class Product implements Serializable {
     private double price;
     private String imgURL;
 
-
+    //@JsonIgnore
     @ManyToMany
     @JoinTable(name="tb_product_category",
     joinColumns= @JoinColumn(name = "id_product"),

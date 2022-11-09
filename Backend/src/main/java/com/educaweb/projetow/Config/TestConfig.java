@@ -1,13 +1,7 @@
 package com.educaweb.projetow.Config;
 
-import com.educaweb.projetow.Repositories.CategoryRepository;
-import com.educaweb.projetow.Repositories.OrderRepository;
-import com.educaweb.projetow.Repositories.ProductRepository;
-import com.educaweb.projetow.Repositories.UserRepository;
-import com.educaweb.projetow.model.entidade.Category;
-import com.educaweb.projetow.model.entidade.Order;
-import com.educaweb.projetow.model.entidade.Product;
-import com.educaweb.projetow.model.entidade.User;
+import com.educaweb.projetow.Repositories.*;
+import com.educaweb.projetow.model.entidade.*;
 import com.educaweb.projetow.model.entidade.enums.OrderStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -37,6 +31,9 @@ public class TestConfig implements CommandLineRunner {
 
     @Autowired
     ProductRepository productRepository;
+
+    @Autowired
+    OrdemItemRepository  ordemItemRepository;
 
 
     //Método que sempre executa ao rodar a aplicação
@@ -82,6 +79,13 @@ public class TestConfig implements CommandLineRunner {
 
         productRepository.saveAll((Arrays.asList(p1,p2,p3,p4,p5)));
 
+
+        OrdemItem oi1 = new OrdemItem(ped1, p1, 2, p1.getPrice());
+        OrdemItem oi2 = new OrdemItem(ped1, p3, 1, p3.getPrice());
+        OrdemItem oi3 = new OrdemItem(ped2, p3, 2, p3.getPrice());
+        OrdemItem oi4 = new OrdemItem(ped3, p5, 2, p5.getPrice());
+
+        ordemItemRepository.saveAll((Arrays.asList(oi1,oi2,oi3,oi4)));
 
     }
 

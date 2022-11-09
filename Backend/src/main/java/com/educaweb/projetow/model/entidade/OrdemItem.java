@@ -1,14 +1,10 @@
 package com.educaweb.projetow.model.entidade;
 
 import com.educaweb.projetow.model.entidade.PK.OrderItemPk;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import javax.persistence.Embeddable;
-import javax.persistence.EmbeddedId;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
-
-
 
 
 @Entity
@@ -16,29 +12,30 @@ import java.io.Serializable;
 public class OrdemItem implements Serializable {
 
     @EmbeddedId
-    private OrderItemPk Id = new OrderItemPk();
+    private OrderItemPk id = new OrderItemPk();
 
     private Integer quantity;
     private Double price;
 
+
     public OrdemItem() {}
-
-
     public OrdemItem(Order order,Product product,Integer quantity, Double price) {
-        Id.setOrder(order);
-        Id.setProduct(product);
+        id.setOrder(order);
+        id.setProduct(product);
         this.quantity = quantity;
         this.price = price;
     }
 
+    @JsonIgnore
+    public Order getOrder(){return id.getOrder();}
 
-    public Order getOrder(){return Id.getOrder();}
-    public Product getProduct(){return Id.getProduct();}
+    public Product getProduct(){return id.getProduct();}
+
     public Integer getQuantity() {return quantity;}
     public Double getPrice() {return price;}
 
-    public void setOrder(Order order){Id.setOrder(order);}
-    public void setProduct(Product Product){Id.setProduct(Product);}
+    public void setOrder(Order order){id.setOrder(order);}
+    public void setProduct(Product Product){id.setProduct(Product);}
     public void setQuantity(Integer quantity) {this.quantity = quantity;}
     public void setPrice(Double price) {this.price = price;}
 
@@ -48,11 +45,11 @@ public class OrdemItem implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         OrdemItem ordemItem = (OrdemItem) o;
-        return Id.equals(ordemItem.Id);
+        return id.equals(ordemItem.id);
     }
 
     @Override
     public int hashCode() {
-        return Id.hashCode();
+        return id.hashCode();
     }
 }
