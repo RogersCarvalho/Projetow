@@ -6,12 +6,11 @@ import com.educaweb.projetow.model.entidade.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.util.List;
+
 
 
 @RestController
@@ -19,13 +18,13 @@ import java.util.List;
 public class UserController {
 
        @Autowired
-       private UserService service;
+       private UserService userService;
 
 
        @GetMapping
        public ResponseEntity<List<User>> findall(){
 
-           List<User> lista = service.findAll();
+           List<User> lista = userService.findAll();
            return ResponseEntity.ok().body(lista);
 
        }
@@ -34,10 +33,30 @@ public class UserController {
     @GetMapping("/{id}")
     public ResponseEntity<User> findById(@PathVariable Long id){
 
-        User user = service.findById(id);
+        User user = userService.findById(id);
         return ResponseEntity.ok().body(user);
 
     }
+
+
+    @PostMapping
+    public ResponseEntity<User> Insert(@RequestBody User obj){
+
+        User user = userService.Insert(obj);
+        final var location = ServletUriComponentsBuilder
+                .fromCurrentRequest()
+                .path("/{id}")
+                .buildAndExpand(user.getId())
+                .toUri();
+
+        return ResponseEntity.created(location).body(user);
+       }
+
+
+
+
+
+
 
 
 
