@@ -1,5 +1,4 @@
-package com.educaweb.projetow.Controller.exceptions;
-
+package com.educaweb.projetow.model.Controller.exceptions;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.http.HttpStatus;
@@ -18,8 +17,6 @@ public class StandardError implements Serializable {
 
     public StandardError() {}
     public StandardError(Instant timestamp, Integer status, String error, String message, String path) {
-
-
         this.timestamp = timestamp;
         this.status = status;
         this.error = error;

@@ -1,4 +1,4 @@
-package com.educaweb.projetow.Controller;
+package com.educaweb.projetow.model.Controller;
 
 
 import com.educaweb.projetow.Services.ProductService;

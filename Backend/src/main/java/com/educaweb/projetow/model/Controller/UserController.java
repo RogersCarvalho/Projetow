@@ -1,4 +1,4 @@
-package com.educaweb.projetow.Controller;
+package com.educaweb.projetow.model.Controller;
 
 import com.educaweb.projetow.Services.UserService;
 import com.educaweb.projetow.model.entidade.User;
@@ -14,26 +14,26 @@ import java.util.List;
 @RequestMapping("/users")
 public class UserController {
 
+
        @Autowired
        private UserService userService;
 
 
-       @GetMapping
-       public ResponseEntity<List<User>> findall(){
-
-           List<User> lista = userService.findAll();
-           return ResponseEntity.ok().body(lista);
-
-       }
-
-
-    @GetMapping("/{id}")
-    public ResponseEntity<User> findById(@PathVariable Long id){
+       @GetMapping("/{id}")
+       public ResponseEntity<User> findById(@PathVariable Long id){
            User user = userService.findById(id);
             return ResponseEntity.ok().body(user);
        }
 
 
+
+    @GetMapping
+    public ResponseEntity<List<User>> findall(){
+
+        List<User> lista = userService.findAll();
+        return ResponseEntity.ok().body(lista);
+
+    }
 
     @PostMapping
     public ResponseEntity<User> Insert(@RequestBody User obj){
