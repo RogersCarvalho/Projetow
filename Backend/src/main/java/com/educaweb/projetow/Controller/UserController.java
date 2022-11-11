@@ -63,6 +63,13 @@ public class UserController {
     }
 
 
+    @PutMapping("/{id}")
+    public ResponseEntity<User> Update(@PathVariable Long id,@RequestBody User obj){
+
+           User user = userService.Update(id, obj);
+           return ResponseEntity.ok().body(user);
+
+       }
 
 
 
