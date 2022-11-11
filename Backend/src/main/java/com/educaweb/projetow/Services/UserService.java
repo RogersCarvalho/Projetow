@@ -1,6 +1,7 @@
 package com.educaweb.projetow.Services;
 
 import com.educaweb.projetow.Repositories.UserRepository;
+import com.educaweb.projetow.Services.exceptions.ResourceNotFoundException;
 import com.educaweb.projetow.model.entidade.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,18 +16,23 @@ public class UserService {
   @Autowired
   private UserRepository userRepository;
 
-  public List<User> findAll() {
 
+
+  public List<User> findAll() {
       return userRepository.findAll();
   }
 
+
+
   public User findById(Long id){
       Optional<User> obj = userRepository.findById(id);
-      return obj.get();
+      return obj.orElseThrow(()-> new ResourceNotFoundException(id));
   }
 
-  public User Insert(User obj){
 
+
+
+  public User Insert(User obj){
       return userRepository.save(obj);
   }
 
